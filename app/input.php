@@ -21,9 +21,17 @@
         xhttpreq.open("POST", "upload.php", true);
         xhttpreq.send(formdata);
      }  
-     //登録遷移処理
-     function entry(){
-        document.location.href = "entry.php";
+    //登録ページ遷移処理
+    function transition(){
+
+    // 「OK」時の処理 ＋ 確認ダイアログの表示
+    if(window.confirm('登録してもよろしいですか？')){
+        location.href = "entry.php"; // 遷移
+    }
+    // 「キャンセル」時の処理
+    else{
+        window.alert('キャンセルされました'); // 警告ダイアログを表示
+    }
     }
 </script> 
 
@@ -103,7 +111,7 @@
         </form>
         <br>
         </div>
-        <input type="submit" value="登録" onclick="Javascript:entry()">
+        <input type="submit" value="登録" onclick="Javascript:transition()">
         <hr width="500">
     </div>
     </body>

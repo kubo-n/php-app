@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <title>記事名</title>
 </head>
+<script type="text/javascript">
+    //削除ページ遷移処理
+    function transition(){
+
+    // 「OK」時の処理 ＋ 確認ダイアログの表示
+    if(window.confirm('削除してもよろしいですか？')){
+        location.href = "delete.php"; // 遷移
+    }
+    // 「キャンセル」時の処理
+    else{
+        window.alert('キャンセルされました'); // 警告ダイアログを表示
+    }
+    }
+</script> 
+
 <body>
     <body background="img/back.gif" text="#660000">
         <div align="center">
         <img src="img/title.jpg" width="500" alt="title">
         <br><br>
- <!--   <form action="receive.php" method="post">
-        名前：<input type="text" name="myname"><br>
-        年齢：<input type="number" name="age"><br>
-        <input type="submit" value="データ送信">
-    </form>
--->
+
         <hr width="500">
         <a href="index.html">トップ</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 　      <a href="list.php">記事一覧</a><br>
@@ -76,7 +86,7 @@
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <a href="list.php">戻る</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <a href="input.php">編集</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <input type="submit" value="削除">
+        <input type="submit" value="削除" onclick="Javascript:transition()">
     </div>
         <hr width="500">
     </div>
