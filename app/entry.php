@@ -20,6 +20,9 @@
 　      <a href="list.php">記事一覧</a><br>
         <hr width="500"><br>
         <font size="3">登録が完了しました。</font><br>
+        <a href="list.php">戻る</a>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <hr width="500">
     </div>
     </body>
