@@ -23,11 +23,13 @@
      }  
     //登録ページ遷移処理
     function transition(){
-    //入力チェック
+        //入力チェック
         if (document.getElementById('title').value == "" ){
             alert('タイトルが未入力です。');
         }else if(document.getElementById('amount').value == "" ){
             alert('分量(何人分)が未入力です。');
+        }else if(document.getElementById('amount').value.match(/[^0-9]+/)){
+            alert('分量(何人分)は数値を入力してください。');
         }else if(document.getElementById('ingredients').value == "" ){
             alert('材料が未入力です。');
         }else if(document.getElementById('recipe1').value == "" ){
