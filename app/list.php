@@ -6,7 +6,18 @@
 </head>
 <body>
     <body background="img/back.gif" text="#660000">
-        <div align="center">
+    <style>
+        .wrapper {
+            margin: 0 auto;
+            text-align: center;
+        }
+        .txt {
+            display: inline-block;
+            text-align: left;
+            width: 500px;
+        }
+    </style>
+     <div class="wrapper">
         <img src="img/title.jpg" width="500" alt="title">
         <br><br>
  <!--   <form action="receive.php" method="post">
@@ -19,14 +30,12 @@
         <a href="index.html">トップ</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 　      <a href="list.php">記事一覧</a><br>
         <hr width="500">
-        <div align="left">
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <p class="txt">
         <a href="input.php">新規</a>
-        <br><br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <br></p>
+        <p class="txt">
         <a href="read.php">・ここに一覧</a>
-        <br>
-        </div>
+        <br></p>
         <hr width="500">
     </div>
     </body>
