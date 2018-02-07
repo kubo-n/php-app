@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>新規登録</title>
-</head>
+</head> 
 <script type="text/javascript">
      //画像アップロード処理
      function file_upload()
@@ -24,6 +24,8 @@
     //登録ページ遷移処理
     function transition(){
         //入力チェック
+        var formdata = new FormData(document.getElementById("my_form"))
+        
         if (document.getElementById('title').value == "" ){
             alert('タイトルが未入力です。');
         }else if(document.getElementById('amount').value == "" ){
@@ -37,7 +39,11 @@
         }else{
             // 「OK」時の処理 ＋ 確認ダイアログの表示
             if(window.confirm('登録してもよろしいですか？')){
-                location.href = "entry.php"; // 遷移
+            
+                xhttpreq.open("POST", "test.php", true);
+                xhttpreq.send(formdata);
+
+            //    location.href = "test.php"; // 遷移
             }
         }
     }
@@ -64,6 +70,7 @@
         <input type="submit" value="データ送信">
     </form>
 -->
+<form id="my_form" name="form1" method ="post" action="test.php">
         <hr width="500">
         <a href="index.html">トップ</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 　      <a href="list.php">記事一覧</a><br>
@@ -97,15 +104,16 @@
         <textarea value="" name="recipe10" id="recipe10" rows="3" cols="50" wrap="hard"></textarea><br>
         その他メモ<br>&emsp;&emsp;&emsp;&emsp;&emsp;
         <textarea value="" name="memo" id="memo" rows="5" cols="50" wrap="hard"></textarea><br></p>
-        <form id="my_form">
+        
         <p class="txt">
         写真選択&emsp;
         <input type="file" name="file_1">
         <button type="button" onclick="file_upload()">アップロード</button></p>
-        </form>
+        
         <br>
         <input type="submit" value="登録" onclick="Javascript:transition()">
         <hr width="500">
+        </form>
     </div>
     </body>
 </body>
