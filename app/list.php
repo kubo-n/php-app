@@ -19,11 +19,35 @@
 	{
 		die('エラー:'.$Ecception->getMessage());
     }
+    try
+	{		
+		//ヘッダーからtitleを取得
+		$pdo -> beginTransaction();		
+		$stmh = $pdo->prepare("select title,id from recipe_header");
+		$stmh->execute();
+        $pdo -> commit();
+	}
+	catch(PDOException $Exception)
+	{
+		$pdo -> rollBack();
+		print"エラーです:".$Exception -> getMessage();
+	}
 ?>
 <head>
     <meta charset="UTF-8">
     <title>記事一覧</title>
 </head>
+<script type="text/javascript">
+   function read()
+    {
+        var formdata = new FormData(document.getElementById("read_form"))
+        //var xhttpreq = new XMLHttpRequest();        
+        //xhttpreq.open("POST", "read.php", true);
+        //xhttpreq.send(formdata);
+        //return true;
+        window.location.href = 'read.php'
+    }
+</script>
 <body>
     <body background="img/back.gif" text="#660000">
     <style>
@@ -40,12 +64,6 @@
      <div class="wrapper">
         <img src="img/title.jpg" width="500" alt="title">
         <br><br>
- <!--   <form action="receive.php" method="post">
-        名前：<input type="text" name="myname"><br>
-        年齢：<input type="number" name="age"><br>
-        <input type="submit" value="データ送信">
-    </form>
--->
         <hr width="500">
         <a href="index.html">トップ</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 　      <a href="list.php">記事一覧</a><br>
@@ -53,9 +71,21 @@
         <p class="txt">
         <a href="input.php">新規</a>
         <br></p>
+        <?php if ($stmh != ''){
+              //titleを配列にして表示   
+              foreach ($stmh as  $row) : 
+        ?>        
+        <form id="read_form" name="form1" method ="post" action="read.php">
         <p class="txt">
-        <a href="read.php">・ここに一覧</a>
-        <br></p>
+            <a href="read.php" onclick="Javascript:read()">・<?php echo $row['title']?></a>
+           <!-- <button type="button" onclick="read()">・<?php echo $row['title']?></button>-->
+            <input type="hidden" name="<?php $row['id']?>">
+        </p>
+        </form>
+        <?php
+            endforeach;
+        }
+        ?>
         <hr width="500">
     </div>
     </body>
