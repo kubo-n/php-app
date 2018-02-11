@@ -13,37 +13,42 @@
 
         // XMLHttpRequestによるアップロード処理
         var xhttpreq = new XMLHttpRequest();
-        xhttpreq.onreadystatechange = function() {
-        if (xhttpreq.readyState == 4 && xhttpreq.status == 200) {
-            alert(xhttpreq.responseText);
+        xhttpreq.onreadystatechange = function() 
+        {
+            if (xhttpreq.readyState == 4 && xhttpreq.status == 200) {
+                alert(xhttpreq.responseText);
+            }
         }
-        };
         xhttpreq.open("POST", "upload.php", true);
         xhttpreq.send(formdata);
      }  
     //登録ページ遷移処理
-    function transition(){
+    function transition()
+    {
         //入力チェック
         var formdata = new FormData(document.getElementById("my_form"))
         
         if (document.getElementById('title').value == "" ){
             alert('タイトルが未入力です。');
+            return false;
         }else if(document.getElementById('amount').value == "" ){
             alert('分量(何人分)が未入力です。');
+            return false;
         }else if(document.getElementById('amount').value.match(/[^0-9]+/)){
             alert('分量(何人分)は数値を入力してください。');
+            return false;
         }else if(document.getElementById('ingredients').value == "" ){
             alert('材料が未入力です。');
+            return false;
         }else if(document.getElementById('recipe1').value == "" ){
-            alert('レシピが未入力です。');        
+            alert('レシピが未入力です。');
+            return false;        
         }else{
             // 「OK」時の処理 ＋ 確認ダイアログの表示
             if(window.confirm('登録してもよろしいですか？')){
-            
-                xhttpreq.open("POST", "test.php", true);
-                xhttpreq.send(formdata);
-
-            //    location.href = "test.php"; // 遷移
+            xhttpreq.open("POST", "insert.php", true);
+            xhttpreq.send(formdata);
+            return true;
             }
         }
     }
@@ -64,13 +69,9 @@
         <div class="wrapper">
         <img src="img/title.jpg" width="500" alt="title">
         <br><br>
- <!--   <form action="receive.php" method="post">
-        名前：<input type="text" name="myname"><br>
-        年齢：<input type="number" name="age"><br>
-        <input type="submit" value="データ送信">
-    </form>
--->
-<form id="my_form" name="form1" method ="post" action="test.php">
+ 
+<form id="my_form" name="form1" method ="post" action="insert.php">
+<!--<form id="my_form" name="form1" method ="post">-->
         <hr width="500">
         <a href="index.html">トップ</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 　      <a href="list.php">記事一覧</a><br>
@@ -109,9 +110,8 @@
         写真選択&emsp;
         <input type="file" name="file_1">
         <button type="button" onclick="file_upload()">アップロード</button></p>
-        
-        <br>
-        <input type="submit" value="登録" onclick="Javascript:transition()">
+        <br>要ファイル名取得
+        <input type="submit" value="登録" onclick="Javascript:transition();return false;">
         <hr width="500">
         </form>
     </div>

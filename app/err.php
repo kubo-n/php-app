@@ -13,7 +13,7 @@
         <a href="index.html">トップ</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 　      <a href="list.php">記事一覧</a><br>
         <hr width="500"><br>
-        <font size="3">登録が完了しました。</font><br>
+        <font size="3">エラーにより登録が完了しませんでした。</font><br>
         <a href="list.php">戻る</a>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
