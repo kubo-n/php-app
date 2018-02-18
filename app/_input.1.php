@@ -34,7 +34,7 @@
 
         document.getElementById("filename").value = filename;
 
-        //alert(document.getElementById("filename").value);
+        alert(document.getElementById("filename").value);
             
         //入力チェック
         var formdata = new FormData(document.getElementById("my_form"));
@@ -55,12 +55,7 @@
             return false;
         }else if(document.getElementById('recipe1').value == "" ){
             alert('レシピが未入力です。');
-            return false;
-        
-        }else if(document.getElementById('filename').value == "" ){
-            alert('fairunasi。');
-            return false;            
-        
+            return false;        
         }else{
             // 「OK」時の処理 ＋ 確認ダイアログの表示
             if(window.confirm('登録してもよろしいですか？')){
@@ -131,7 +126,7 @@
         写真選択&emsp;
         <input type="file" name="file_1" id="uploadfile">
         <button type="button" onclick="file_upload()">アップロード</button></p>
-        <input type="hidden" name="filename" id="filename" value="">
+        <input type="hidden" name="filename" id="filename" value="filename">
         <br>
         <input type="submit" value="登録" onclick="Javascript:transition();return false;">
         <hr width="500">

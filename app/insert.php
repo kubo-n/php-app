@@ -19,20 +19,21 @@
 	}
 	//insert処理
 	try
-	{	
+	{
+
 		//ヘッダー部分登録処理
 		$pdo -> beginTransaction();
 		$sql = "insert into recipe_header (title,amount,ingredients,memo,picture,inserted_date,updated_date)
-		values(:title,:amount,:ingredients,:memo,'picture',now(),now())";
+		values(:title,:amount,:ingredients,:memo,:picture,now(),now())";
 		$stmh = $pdo -> prepare($sql);
 		$stmh -> bindValue(':title',$_POST[title],PDO::PARAM_STR);
 		$stmh -> bindValue(':amount',$_POST[amount],PDO::PARAM_INT);
 		$stmh -> bindValue(':ingredients',$_POST[ingredients],PDO::PARAM_STR);
 		$stmh -> bindValue(':memo',$_POST[memo],PDO::PARAM_STR);
-//		$stmh -> bindValue(':picture',$_POST[file_1],PDO::PARAM_STR);
+		$stmh -> bindValue(':picture',$_POST[filename],PDO::PARAM_STR);
 		$stmh -> execute();
 		$pdo -> commit();
-	
+
 		//ヘッダーからidを取得
 		$pdo -> beginTransaction();		
 		$stmh = $pdo->prepare("select id from recipe_header where inserted_date =(select max(inserted_date) from recipe_header)");
@@ -47,7 +48,6 @@
 		values(:id,:number,:step,now(),now())";
 		$stmh = $pdo -> prepare($sql);
 		$stmh -> bindValue(':id',$result['id'],PDO::PARAM_INT);
-		//$stmh -> $result = ':id';
 		$stmh -> bindValue(':number',1,PDO::PARAM_INT);
 		$stmh -> bindValue(':step',$_POST[recipe1],PDO::PARAM_STR);
 		$stmh -> execute();
@@ -152,6 +152,8 @@
 	}
 	catch(PDOException $Exception)
 	{
+		$filename = $_POST[filename];
+		echo $filename;
 		$pdo -> rollBack();
 		//print"エラーです:".$Exception -> getMessage();
 ?>

@@ -41,11 +41,19 @@
    function read()
     {
         var formdata = new FormData(document.getElementById("read_form"))
+
         //var xhttpreq = new XMLHttpRequest();        
         //xhttpreq.open("POST", "read.php", true);
         //xhttpreq.send(formdata);
         //return true;
-        window.location.href = 'read.php'
+        //window.location.href = 'read.php'
+
+        var xhttpreq = new XMLHttpRequest();
+        xhttpreq.onreadystatechange = function(){
+            
+        }
+        xhttpreq.open("POST", "read.php", true);
+        xhttpreq.send(formdata); 
     }
 </script>
 <body>
@@ -77,9 +85,12 @@
         ?>        
         <form id="read_form" name="form1" method ="post" action="read.php">
         <p class="txt">
-            <a href="read.php" onclick="Javascript:read()">・<?php echo $row['title']?></a>
+            <!--<input type="submit" onclick="Javascript:read()"value="<?php echo $row['title']?>">-->
+            <a href="read.php?id=<?php echo $row['id']?>&title=<?php echo $row['title']?>"><?php echo $row['title']?></a>
            <!-- <button type="button" onclick="read()">・<?php echo $row['title']?></button>-->
-            <input type="hidden" name="<?php $row['id']?>">
+           <!--<input type="hidden" name="title" value="<?php echo $row['title']?>">-->
+           <!--<input type="hidden" name="id" value="<?php echo $row['id']?>">-->
+           <!--<input type="submit" value="ここ">-->
         </p>
         </form>
         <?php
