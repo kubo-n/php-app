@@ -289,10 +289,6 @@
             text-align: left;
             width: 500px;
         }
-        span {
-            background-color: rgba( 204, 255, 204, 0.55 );
-            color: blue;
-        }
     </style>
     <div class="wrapper">
         <img src="img/title.jpg" width="500" alt="title">
@@ -303,7 +299,10 @@
         <hr width="500">
         <p class="txt">
         タイトル&emsp;<input type="text" style="border:0;background-color:transparent;color:#660000;" readonly value="<?php echo $title?>" name="title" id="title" size="48"><br><br>
-        <img src="http://192.168.33.10/files/<?php echo $picture?>" alt="picture" title="picture" width="300" height="200"><br>
+        <?php if ($picture != ""){ ?>
+<!--        <img src="http://192.168.33.10/files/<?php echo $picture?>" alt="picture" title="picture" width="300" height="200"><br>-->
+            <img src="http://192.168.33.10/files/<?php echo $picture?>" alt="picture" title="picture" width="300"><br>
+        <?php } ?>
         材料(<input type="text" style="border:0;background-color:transparent;color:#660000;" readonly value="<?php echo $amount?>" name="amount" id="amount" size="3+">)人分<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;
         <textarea  name="ingredients" style="border:0;background-color:transparent;color:#660000;" readonly id="ingredients" rows="5" cols="50" wrap="hard"><?php echo $ingredients?></textarea><br>
@@ -366,10 +365,14 @@
         <textarea  name="recipe10" style="border:0;background-color:transparent;color:#660000;" readonly id="recipe10" rows="3" cols="50" wrap="hard"><?php echo $recipe10?></textarea><br>
         <?php 
         }
+        if ($memo != ""){
         ?>
         その他メモ<br>&emsp;&emsp;&emsp;&emsp;&emsp;
         <textarea name="memo" style="border:0;background-color:transparent;color:#660000;" readonly id="memo" rows="5" cols="50" wrap="hard"><?php echo $memo?></textarea><br></p>
         <br>
+        <?php 
+        }
+        ?>
         <p class="txt">
         &emsp;&emsp;&emsp;&emsp;&emsp;
         <a href="list.php">戻る</a>

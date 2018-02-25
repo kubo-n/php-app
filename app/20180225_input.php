@@ -15,87 +15,59 @@
         var xhttpreq = new XMLHttpRequest();
         xhttpreq.onreadystatechange = function() 
         {
-            if (xhttpreq.readyState == 4 && xhttpreq.status == 200) 
-            {
+            if (xhttpreq.readyState == 4 && xhttpreq.status == 200) {
                 alert(xhttpreq.responseText);
             }
         }
         xhttpreq.open("POST", "upload.php", true);
         xhttpreq.send(formdata);
-     }
-
-    function chk_data() 
-    {
-        var filename = document.getElementById("uploadfile").value;
-
-        //文字を置換する
-        filename = filename.replace("C:\\fakepath\\","");
-
-        var ele = document.createElement('input');
-
-        document.getElementById("filename").value = filename;
-    
-        //入力チェック
-        var formdata = new FormData(document.getElementById("my_form"));
-
-        if (document.getElementById('title').value == "" )
-        {
-            alert('タイトルが未入力です。');
-            return false;
-        }
-        else if(document.getElementById('amount').value == "" )
-        {
-            alert('分量(何人分)が未入力です。');
-            return false;
-        }
-        else if(document.getElementById('amount').value.match(/[^0-9]+/))
-        {
-            alert('分量(何人分)は数値を入力してください。');
-            return false;
-        }
-        else if(document.getElementById('ingredients').value == "" )
-        {
-            alert('材料が未入力です。');
-            return false;
-        }
-        else if(document.getElementById('recipe1').value == "" )
-        {
-            alert('レシピが未入力です。');
-            return false;
-        }
-        else
-        {
-            if(window.confirm('登録してもよろしいですか？'))
-            {
-                transition();   
-                //return true;
-            }
-        }
-    }
-
+     }  
     //登録ページ遷移処理
     function transition()
     {
         var filename = document.getElementById("uploadfile").value;
 
         //文字を置換する
-        filename = filename.replace("C:\\fakepath\\","");
+        /*filename = filename.replace("C:\\fakepath\\","");
         
         var ele = document.createElement('input');
 
-        document.getElementById("filename").value = filename;
+        document.getElementById("filename").value = filename;*/
             
         //入力チェック
         var formdata = new FormData(document.getElementById("my_form"));
         
-        formdata.appendChild(filename);
-        
-        // 「OK」時の処理 ＋ 確認ダイアログの表示
-        xhttpreq.open("POST", "insert.php", true);
-        xhttpreq.send(formdata);
-        return true;
-    }
+//        formdata.appendChild(filename);
 
+        if (document.getElementById('title').value == "" ){
+            alert('タイトルが未入力です。');
+            return false;
+        }else if(document.getElementById('amount').value == "" ){
+            alert('分量(何人分)が未入力です。');
+            return false;
+        }else if(document.getElementById('amount').value.match(/[^0-9]+/)){
+            alert('分量(何人分)は数値を入力してください。');
+            return false;
+        }else if(document.getElementById('ingredients').value == "" ){
+            alert('材料が未入力です。');
+            return false;
+        }else if(document.getElementById('recipe1').value == "" ){
+            alert('レシピが未入力です。');
+            return false;
+        
+/*        }else if(document.getElementById('filename').value == "" ){
+            alert('fairunasi。');
+            return false;*/            
+        
+        }else{
+            // 「OK」時の処理 ＋ 確認ダイアログの表示
+            if(window.confirm('登録してもよろしいですか？')){
+                xhttpreq.open("POST", "insert.php", true);
+                xhttpreq.send(formdata);
+                return true;
+            }
+        }
+    }
 </script> 
 <body>
     <body background="img/back.gif" text="#660000">
@@ -159,7 +131,7 @@
         <button type="button" onclick="file_upload()">アップロード</button></p>
         <input type="hidden" name="filename" id="filename" value="">
         <br>
-        <input type="submit" value="登録" onclick="Javascript:chk_data();return false;">
+        <input type="submit" value="登録" onclick="Javascript:transition();return false;">
         <hr width="500">
         </form>
     </div>
